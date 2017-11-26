@@ -3,6 +3,7 @@
 module.exports = function(app) {
 	var UsersController = require('./usersController');
 
-	app.route("/users")
-		.post(UsersController.createAnUser);
+	app.route('/users')
+		.get(UsersController.index)
+		.post(UsersController.create);
 };
