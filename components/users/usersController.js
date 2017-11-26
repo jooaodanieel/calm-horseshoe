@@ -57,3 +57,16 @@ exports.update = function(req, res) {
 		res.json(user);
 	});
 };
+
+/**
+ * Receives a request and sends a "Success" message
+ * or an error
+ */
+exports.delete = function(req,res) {
+	User.remove({_id: req.params.userId}, function(err,user) {
+		if (err)
+			res.send(err);
+
+		res.json({message: "Success"});
+	});
+};
