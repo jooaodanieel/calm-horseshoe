@@ -31,3 +31,16 @@ exports.create = function (req, res) {
 		res.json(user);
 	});
 };
+
+/**
+ * Receives a request and sends a response with the identified user
+ * or with an error when not found
+ */
+exports.read = function (req,res) {
+	User.findById(req.params.userId, function(err,user) {
+		if (err)
+			res.send(err);
+
+		res.json(user);
+	});
+};

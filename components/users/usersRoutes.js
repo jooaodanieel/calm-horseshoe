@@ -6,4 +6,7 @@ module.exports = function(app) {
 	app.route('/users')
 		.get(UsersController.index)
 		.post(UsersController.create);
+
+	app.route('/users/:userId')
+		.get(UsersController.read);
 };
