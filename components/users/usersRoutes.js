@@ -8,5 +8,6 @@ module.exports = function(app) {
 		.post(UsersController.create);
 
 	app.route('/users/:userId')
-		.get(UsersController.read);
+		.get(UsersController.read)
+		.put(UsersController.update);
 };

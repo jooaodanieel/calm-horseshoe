@@ -44,3 +44,16 @@ exports.read = function (req,res) {
 		res.json(user);
 	});
 };
+
+/**
+ * Receives a request and sends a response with the user updated
+ * or with errors, due to validation or not found
+ */
+exports.update = function(req, res) {
+	User.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true}, function(err,user) {
+		if (err)
+			res.send(err);
+
+		res.json(user);
+	});
+};
