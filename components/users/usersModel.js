@@ -3,6 +3,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+/**
+ * Defines the schema used when persisting users
+ * in the DB
+ */
 var UserSchema = new Schema({
 	email: {
 		type: String,
