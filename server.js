@@ -4,7 +4,7 @@ var config = require('./config'),
 	port = config.server.port;
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.db);
+mongoose.connect(config.db.default);
 
 app.listen(port);
 
