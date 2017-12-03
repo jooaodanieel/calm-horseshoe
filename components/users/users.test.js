@@ -78,20 +78,34 @@ describe('User API', () => {
 			mongoose.disconnect(done);
 		});
 
-		test('GET /users retrieves all users', async () => {
-			const res = await request(app).get('/users');
+		test('GET /users retrieves all users', () => {
+			request(app).get('/users').then((res) => {
+				expect(res.body.length).toEqual(input_users.length);
 
-			expect(res.body.length).toEqual(input_users.length);
+				done();
+			});
 		});
 
-		test('POST /users creates a new user', async () => {
-			
+		test('POST /users creates a new user', () => {
+			var post_user = {
+				email: 'post_user@test.com',
+				first_name: 'Post',
+				last_name: 'User',
+				personal_phone: '12289862'
+			};
+			request(app).post('/users')
+				.send(post_user)
+				.type('form')
+				.then((res) => {
+					expect(res.statusCode).toBe(200);
+					done();
+				});
 		});
 
-		test('GET /users/:userId retrieve a specific user', () => {});
+		test.skip('GET /users/:userId retrieve a specific user', () => {});
 
-		test('PUT /users/:userId updates a specific user', () => {});
+		test.skip('PUT /users/:userId updates a specific user', () => {});
 
-		test('DELETE /users/:userId deletes a specific user', () => {});
+		test.skip('DELETE /users/:userId deletes a specific user', () => {});
 	});
 });
