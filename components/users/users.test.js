@@ -38,9 +38,11 @@ describe('User model', () => {
 
 describe('User API', () => {
 
-	test('Get / returns 404', async () => {
-		const res = await request(app).get('/');
-		expect(res.statusCode).toBe(404);
+	test('Get / returns 404', () => {
+		request(app).get('/').then((res) => {
+			expect(res.statusCode).toBe(404);
+			done();
+		});
 	});
 
 	describe('Correct routes', () => {
@@ -79,7 +81,7 @@ describe('User API', () => {
 		});
 
 		test('GET /users retrieves all users', () => {
-			request(app).get('/users').then((res) => {
+			request(app).get('/users').exec().then((res) => {
 				expect(res.body.length).toEqual(input_users.length);
 
 				done();
@@ -96,13 +98,25 @@ describe('User API', () => {
 			request(app).post('/users')
 				.send(post_user)
 				.type('form')
+				.exec()
 				.then((res) => {
+					console.log(res.statusCode);
 					expect(res.statusCode).toBe(200);
 					done();
 				});
 		});
 
-		test.skip('GET /users/:userId retrieve a specific user', () => {});
+		test('GET /users/:userId retrieve a specific user', () => {
+			User.findOne({}, function (err, a_user) {
+				if (err)
+					console.log(err);
+
+				request(app).get('/users/'+a_user._id).exec().then((res) => {
+					expect(res.body.name).toEqual(a_user.name);
+					done();
+				});
+			});
+		});
 
 		test.skip('PUT /users/:userId updates a specific user', () => {});
 
