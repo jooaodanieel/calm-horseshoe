@@ -47,6 +47,11 @@ Or to run all tests, run:
 `npm test`
 > note: this will run lint before running other tests
 
+
+## Documentation
+
+Once you have a local server running, the API was documented with Swagger and it can be found at `http://localhost:3000/api-docs/`
+
 ## Author
 
 João Francisco Daniel - 2017 - Applying for theVelops internship
