@@ -50,7 +50,11 @@ Or to run all tests, run:
 
 ## Documentation
 
-Once you have a local server running, the API was documented with Swagger and it can be found at `http://localhost:3000/api-docs/`
+The API was documented using [Swagger](https://swagger.io/), and the code, with [JSDoc](http://usejsdoc.org/).
+
+Once you have a local server running, you can access the docs at:
+- the API `http://localhost:3000/api-docs/`
+- the code `http://localhost:3000/code-docs/`
 
 ## Author
 
